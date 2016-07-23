@@ -25,11 +25,12 @@ class LinkParser(HTMLParser):
 
 
 def spider(url, max_pages):
-    pages_to_visit = set(url)
+    pages_to_visit = set([url])
     number_visited = 0
     parser = LinkParser()
     while number_visited < max_pages and pages_to_visit != []:
-        url = pages_to_visit[number_visited]
+        url = list(pages_to_visit)
+        url = url[number_visited]
         number_visited += 1
         print(number_visited, "Visiting:", url)
         try:
@@ -41,4 +42,4 @@ def spider(url, max_pages):
         except:
             print("!!fail!!")
 
-spider("https://www.facebook.com/", 20)
+spider("https://www.facebook.com/", 30)
